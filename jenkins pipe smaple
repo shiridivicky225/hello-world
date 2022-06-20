@@ -1,0 +1,39 @@
+pipeline 
+{
+    agent any
+
+    stages 
+    {
+        stage('build') 
+        {
+            steps  
+            {
+                echo 'Build app'
+            }
+        }
+       stage('test') 
+        {
+            steps  
+            {
+                echo 'test app'
+            }
+        }
+       stage('depoly') 
+        {
+            steps  
+            {
+                echo 'depoly'
+            }
+        }
+    }
+      post
+         {
+
+           always
+           {
+             emailext body: '''build status depoly context''', subject: 'pipeline status', to: 'shiridivicky225@gmail.com'           
+           }
+ 
+         }
+
+}
